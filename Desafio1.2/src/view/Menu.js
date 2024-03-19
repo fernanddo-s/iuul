@@ -4,18 +4,13 @@
 const Paciente = require("../model/Paciente.js");
 const Consulta = require("../model/Consulta.js");
 const Agenda = require("../model/Agenda.js");
+var readlineSync = require("readline-sync");
 
-const readline = require("readline").createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-readline.question(`cpf?`, (cpf) => {
-  let cpf = cpf;
-  console.log(`Hi ${cpf}!`);
-  readline.close();
-});
+let cpf = readlineSync.question("cpf");
+let nome = readlineSync.question("nome");
+let data_nascimento = readlineSync.question("data_nascimento");
 
-const paciente1 = new Paciente(cpf, "Luís Fernando", "25/04/2001");
+const paciente1 = new Paciente(cpf, nome, data_nascimento);
 const paciente2 = new Paciente("0000000000", "José Silva", "25/12/2010");
 
 const consulta1 = new Consulta(paciente1, "19/03/2024", "0800", "0830");
@@ -34,3 +29,14 @@ agenda.agenda.forEach((item, index) => {
   console.log(`Motivo: ${item.consulta.hora_inicial}`);
   console.log("---------------------");
 });
+
+console.log("Menu Principal\n1-Cadastro de pacientes\n2-Agenda\n3-Fim");
+let op = readlineSync.question();
+switch (op) {
+  case "1":
+    console.log("cadastrando paciente");
+  case "2":
+    console.log("Agenda");
+  case "3":
+    console.log("Fim do programa");
+}
