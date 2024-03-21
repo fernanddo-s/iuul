@@ -1,16 +1,11 @@
-//Estrutura de interface com o usuario
-//Mostrar valores, fazer perguntas, receber valores para usar como parametros
-
 const Paciente = require("../model/Paciente.js");
 const Consulta = require("../model/Consulta.js");
-const Agenda = require("../model/Agenda.js");
 var readlineSync = require("readline-sync");
 
 let pacientes = [];
 let consultas = [];
 
 while (true) {
-  //printar menu inicial e colocar as opções
   console.log("Menu Principal\n1-Cadastro de pacientes\n2-Agenda\n3-Fim");
   let op = readlineSync.question();
   switch (op) {
@@ -22,6 +17,11 @@ while (true) {
       switch (op_menu_paciente) {
         case "1":
           let cpf = readlineSync.question("CPF: ");
+          //verificar se o cpf ja ta cadastrado
+          if (consultas.find((consulta) => consulta.cpf === cpf)) {
+            console.log("Erro: CPF já cadastrado!");
+            break;
+          }
           //validar cpf
           while (!validarCPF(cpf)) {
             console.log(
@@ -45,11 +45,11 @@ while (true) {
           const [dia, mes, ano] = data_nascimento.split("/");
           const data = new Date(ano, mes, dia);
           const paciente = new Paciente(cpf, nome, data);
-          //validar data de nascimento
           pacientes.push(paciente);
           console.log("Paciente cadastrado com sucesso!");
           break;
         case "2":
+          // listagem de pacientes *FALTA ORDENAÇÃO
           let cpf_exclusao = readlineSync.question("CPF: ");
           for (let i = 0; i < pacientes.length; i++) {
             if (cpf_exclusao === pacientes[i]._cpf) {
@@ -77,13 +77,7 @@ while (true) {
           });
           break;
         case "4":
-          pacientes.forEach((item, index) => {
-            console.log(`Consulta ${index + 1}:`);
-            console.log(`Paciente: ${item.nome}`);
-            console.log(`Idade: ${item.cpf}`);
-            console.log(`Data: ${item.data_nascimento}`);
-            console.log("---------------------");
-          });
+          // listagem de pacientes ordenado por nome
           break;
         case "5":
           break;
@@ -100,35 +94,43 @@ while (true) {
       switch (op_menu_agenda) {
         case "1":
           let cpf = readlineSync.question("CPF: ");
-          //validar cpf
-          while (!validarCPF(cpf)) {
-            console.log(
-              "CPF inválido, digite um CPF válido, por favor!(somente números)"
-            );
-            cpf = readlineSync.question("CPF: ");
+          let data_consulta = readlineSync.question("Data: ");
+          while (!formatoValido(data_consulta)) {
+            console.log("A data deve estar no formato DD/MM/AAAA.");
+            data_consulta = readlineSync.question("Data da Consulta: ");
           }
-          let nome = readlineSync.question("Nome: ");
-          let data_nascimento = readlineSync.question("Data de Nascimento: ");
-          while (
-            !formatoValido(data_nascimento) ||
-            !idadeValida(data_nascimento)
-          ) {
-            if (!formatoValido(data_nascimento)) {
-              console.log("A data deve estar no formato DD/MM/AAAA.");
-            } else {
-              console.log("A data deve ser pelo menos 13 anos atrás.");
-            }
-            data_nascimento = readlineSync.question("Data de Nascimento: ");
-          }
-          const [dia, mes, ano] = data_nascimento.split("/");
+          const [dia, mes, ano] = data_consulta.split("/");
           const data = new Date(ano, mes, dia);
-          const paciente = new Paciente(cpf, nome, data);
-          //validar data de nascimento
-          pacientes.push(paciente);
+          let hora_inicial = readlineSync.question("Hora inicial: ");
+          while (!validarHora(hora_inicial)) {
+            console.log("Hora inválida");
+            hora_inicial = readlineSync.question("Hora inicial: ");
+          }
+          let hora_final = readlineSync.question("Hora final: ");
+          while (!validarHora(hora_final)) {
+            console.log("Hora inválida");
+            hora_final = readlineSync.question("Hora final: ");
+          }
+          const consulta = new Consulta(cpf, data, hora_inicial, hora_final);
+          consultas.push(consulta);
           break;
         case "2":
+          let cpf_exclusao = readlineSync.question("CPF: ");
+          for (let i = 0; i < consultas.length; i++) {
+            if (cpf_exclusao === consultas[i]._cpf) {
+              consultas.splice(i, 1);
+              console.log("Consulta excluída com sucesso!");
+              break;
+            }
+          }
+          console.log("Erro: não foi possível excluir a consulta");
           break;
         case "3":
+          consultas.forEach((item) => {
+            console.log(
+              `${item.cpf} | ${item.data} | ${item.hora_inicial} | ${item.hora_final}`
+            );
+          });
           break;
         case "4":
           break;
@@ -136,14 +138,8 @@ while (true) {
           console.log("Escolha uma opção válida!");
           break;
       }
-      //aqui vai o codigo de Agenda
-      //menu de agendamento ou voltar para o menu inicial
-      //agendar consulta
-      //cancelar agendamento
-      //listar agendamentos
       break;
     case "3":
-      console.log("Fim do programa");
       return false;
     default:
       console.log("Escolha uma opção válida!");
@@ -197,4 +193,8 @@ function calculaIdade(data) {
     return idade - 1;
   }
   return idade;
+}
+
+function validarHora(hora) {
+  return /^((0[8-9]|1[0-8])([0-5][05])|19(00))$/.test(hora);
 }
