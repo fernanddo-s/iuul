@@ -1,15 +1,19 @@
 let fs = require("fs");
 
-  function readFile(filePath) {
+class ReadFile {
+  readFileWithPath(filePath) {
     fs.readFile(`${filePath}`, (err, data) => {
       if (err) {
         console.log(err);
       }
       console.log(data.toString());
+      return data;
     });
   }
-
-export default readFile;
+}
+  
+module.exports = ReadFile;
+// export default readFile;
 
 
 // module.exports = ReadFile;
