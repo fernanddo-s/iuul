@@ -1,18 +1,21 @@
 const { argv } = require('node:process');
-import {ReadFile} from './ReadFile';
+const ReadFile = require('./ReadFile');
+const WriteFile = require('./WriteFile');
 
-// print process.argv
-argv.forEach((val, index) => {
-    console.log(`${index}: ${val}`);
-});
+let rdfl = new ReadFile();
+let data = rdfl.readFileWithPath(argv[2]);
 
-console.log(argv[2])
+let wrfl = new WriteFile();
+wrfl.writeFileWithErros("teste")
 
-ReadFile.readFile(argv[2]);
-
-
-//alguma coisa.readFile(argv[2]);
-
+//executa o arquivo validação
+//ele chama o leitor
+//pega os dados do arquivo
+//chama a classe de Validação
+//executa a validação
+//chama a classe de escrita
+//escreve o que precisa ser escrito
+//fim do programa
 
 // pergar o caminho do arquivo para ler ok
 // chamar o modulo de leitura
