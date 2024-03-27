@@ -4,7 +4,9 @@
   "description": "Desafio de validação de JSON da residência iUUL",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "read": "node ./src/ReadFile.js",
+    "write": "node ./src/WriteFile.js"
   },
   "author": "Luís Fernando",
   "license": "ISC"
