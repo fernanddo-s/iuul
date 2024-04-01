@@ -8,17 +8,11 @@ let data = rdfl.readFileWithPath(argv[2]);
 let wrfl = new WriteFile();
 wrfl.writeFileWithErros("teste")
 
-//executa o arquivo validação
-//ele chama o leitor
-//pega os dados do arquivo
+//executa o arquivo validação ok
+//ele chama o leitor ok
+//pega os dados do arquivo ok
 //chama a classe de Validação
 //executa a validação
-//chama a classe de escrita
+//chama a classe de escrita ok
 //escreve o que precisa ser escrito
 //fim do programa
-
-// pergar o caminho do arquivo para ler ok
-// chamar o modulo de leitura
-//chamar modulo de validação dos dados
-//validar
-//escrever erros no arquivo
