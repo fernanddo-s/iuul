@@ -1,74 +1,72 @@
-{
-  "pessoas": [
-    {
-      "Nome": "Fulano de Tal",
-      "CPF": 12345678900,
-      "Data_de_nascimento": "1990-05-15",
-      "Renda_mensal": 5000.00,
-      "Estado_civil": "S"
-    },
-    {
-      "Nome": "Ciclano da Silva",
-      "CPF": 98765432100,
-      "Data_de_nascimento": "1985-10-20",
-      "Renda_mensal": 7000.00,
-      "Estado_civil": "C"
-    },
-    {
-      "Nome": "Beltrano Souza",
-      "CPF": 45612378900,
-      "Data_de_nascimento": "1978-02-08",
-      "Renda_mensal": 4000.00,
-      "Estado_civil": "V"
-    },
-    {
-      "Nome": "Maria Oliveira",
-      "CPF": 85236974100,
-      "Data_de_nascimento": "1995-12-30",
-      "Renda_mensal": 6000.00,
-      "Estado_civil": "D"
-    },
-    {
-      "Nome": "José Pereira",
-      "CPF": 36925814700,
-      "Data_de_nascimento": "1982-07-25",
-      "Renda_mensal": 5500.00,
-      "Estado_civil": "S"
-    },
-    {
-      "Nome": "Ana Silva",
-      "CPF": 74125896300,
-      "Data_de_nascimento": "1973-09-18",
-      "Renda_mensal": 4800.00,
-      "Estado_civil": "C"
-    },
-    {
-      "Nome": "Pedro Santos",
-      "CPF": 63258491700,
-      "Data_de_nascimento": "1998-04-05",
-      "Renda_mensal": 3500.00,
-      "Estado_civil": "V"
-    },
-    {
-      "Nome": "Mariana Costa",
-      "CPF": 15948763200,
-      "Data_de_nascimento": "1989-11-12",
-      "Renda_mensal": 6800.00,
-      "Estado_civil": "D"
-    },
-    {
-      "Nome": "Luiz Ferreira",
-      "CPF": 36985214700,
-      "Data_de_nascimento": "1980-03-28",
-      "Renda_mensal": 5200.00,
-      "Estado_civil": "S"
-    },
-    {
-      "Nome": "Carla Almeida",
-      "CPF": 78945612300,
-      "Data_de_nascimento": "1991-08-07",
-      "Renda_mensal": 4500.00,
-      "Estado_civil": "C"
-    }
-  ]
-}
+[
+  {
+    "Nome": "Fulano de Tal",
+    "CPF": 12345678900,
+    "Data_de_nascimento": "1990-05-15",
+    "Renda_mensal": 5000.00,
+    "Estado_civil": "S"
+  },
+  {
+    "Nome": "Ciclano da Silva",
+    "CPF": 98765432100,
+    "Data_de_nascimento": "1985-10-20",
+    "Renda_mensal": 7000.00,
+    "Estado_civil": "C"
+  },
+  {
+    "Nome": "Beltrano Souza",
+    "CPF": 45612378900,
+    "Data_de_nascimento": "1978-02-08",
+    "Renda_mensal": 4000.00,
+    "Estado_civil": "V"
+  },
+  {
+    "Nome": "Maria Oliveira",
+    "CPF": 85236974100,
+    "Data_de_nascimento": "1995-12-30",
+    "Renda_mensal": 6000.00,
+    "Estado_civil": "D"
+  },
+  {
+    "Nome": "José Pereira",
+    "CPF": 36925814700,
+    "Data_de_nascimento": "1982-07-25",
+    "Renda_mensal": 5500.00,
+    "Estado_civil": "S"
+  },
+  {
+    "Nome": "Ana Silva",
+    "CPF": 74125896300,
+    "Data_de_nascimento": "1973-09-18",
+    "Renda_mensal": 4800.00,
+    "Estado_civil": "C"
+  },
+  {
+    "Nome": "Pedro Santos",
+    "CPF": 63258491700,
+    "Data_de_nascimento": "1998-04-05",
+    "Renda_mensal": 3500.00,
+    "Estado_civil": "V"
+  },
+  {
+    "Nome": "Mariana Costa",
+    "CPF": 15948763200,
+    "Data_de_nascimento": "1989-11-12",
+    "Renda_mensal": 6800.00,
+    "Estado_civil": "D"
+  },
+  {
+    "Nome": "Luiz Ferreira",
+    "CPF": 36985214700,
+    "Data_de_nascimento": "1980-03-28",
+    "Renda_mensal": 5200.00,
+    "Estado_civil": "S"
+  },
+  {
+    "Nome": "Carla Almeida",
+    "CPF": 78945612300,
+    "Data_de_nascimento": "1991-08-07",
+    "Renda_mensal": 4500.00,
+    "Estado_civil": "C"
+  }
+]
