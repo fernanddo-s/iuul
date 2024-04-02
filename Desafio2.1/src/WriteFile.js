@@ -15,7 +15,7 @@ class WriteFile {
     let data = new Date();
     const dataFormatada = formatarData(data);
     fs.writeFile(
-      `../files/erros-${dataFormatada}.json`,
+      `./files/erros-${dataFormatada}.json`,
       erro,
       (err) => {
         if (err) {
@@ -24,8 +24,6 @@ class WriteFile {
       }
     );
   }
-
-  
 }
 
 module.exports = WriteFile;
