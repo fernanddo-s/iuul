@@ -6,15 +6,14 @@ class ReadFile {
       if (err) {
         console.log(err);
       }
-      console.log(data.toString());
-      return data;
+      return JSON.parse(data);
     });
   }
 }
   
 module.exports = ReadFile;
-// export default readFile;
 
+// const fs = require('fs');
 
-// module.exports = ReadFile;
-//../Desafio2.1/files/leitura.json
+// const dados = fs.readFileSync('arquivo.json', 'utf8');
+// console.log(JSON.parse(dados));
