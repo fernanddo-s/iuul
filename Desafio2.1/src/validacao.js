@@ -3,11 +3,10 @@ const ReadFile = require('./ReadFile');
 const WriteFile = require('./WriteFile');
 
 let rdfl = new ReadFile();
-let data = rdfl.readFileWithPath(argv[2]);//melhorar o nome da variável
-console.log(rdfl.readFileWithPath(argv[2]))
+const data = rdfl.readFileWithPath(argv[2]);//melhorar o nome da variável
+console.log(argv[2])
+console.log(typeof data)
 
-//alguma coisa.validacao(data)
-//retorna os erros caso tenha e eles vão ser escritos
 
 let wrfl = new WriteFile();
 wrfl.writeFileWithErros("teste")

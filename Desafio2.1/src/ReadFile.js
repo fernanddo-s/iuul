@@ -2,11 +2,13 @@ let fs = require("fs");
 
 class ReadFile {
   readFileWithPath(filePath) {
-    fs.readFile(`${filePath}`, (err, data) => {
+    fs.readFile(`${filePath}`, 'utf-8', (err, data) => {
       if (err) {
         console.log(err);
       }
-      return JSON.parse(data);
+      const user = JSON.parse(data)
+      console.log(user.nome)
+      return user;
     });
   }
 }
