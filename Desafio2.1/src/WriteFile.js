@@ -11,18 +11,15 @@ function formatarData(data) {
   return dia + mes + ano + "-" + hora + minuto + segundo;
 }
 class WriteFile {
-  writeFileWithErros(erro) {
+  writeFileWithErros(dados) {
     let data = new Date();
     const dataFormatada = formatarData(data);
-    fs.writeFile(
-      `./files/erros-${dataFormatada}.json`,
-      erro,
-      (err) => {
-        if (err) {
-          throw err;
-        }
+    fs.writeFile(`./files/erros-${dataFormatada}.json`, dados, 'utf-8', (error) => {
+      if (error) {
+        throw error;
       }
-    );
+      
+    });
   }
 }
 

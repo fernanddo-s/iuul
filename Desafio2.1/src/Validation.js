@@ -2,24 +2,11 @@ const moment = require("moment");
 class Validation {
   JSONValidation(users) {
     for (let i = 0; i < users.length; i++) {
-      console.log(users[i].nome);
-      console.log(validarNome(users[i].nome));
-      // validarNome(users[i].nome);
-
-      console.log(users[i].cpf);
-      console.log(validarCPF(users[i].cpf));
-      // validarCPF(users[i].cpf);
-
-      //validarDataNascimento();
-
-
-      console.log(users[i].renda_mensal)
-      console.log(validarRendaMensal(users[i].renda_mensal))
-      //validarRendaMensal(users[i].renda_mensal);
-
-      console.log(users[i].estado_civil);
-      console.log(validarEstadoCivil(users[i].estado_civil));
-      // validarEstadoCivil(users[i].estado_civil);
+      validarNome(users[i].nome);
+      validarCPF(users[i].cpf);
+      // validarDataNascimento();
+      validarRendaMensal(users[i].renda_mensal);
+      validarEstadoCivil(users[i].estado_civil);
     }
   }
 }

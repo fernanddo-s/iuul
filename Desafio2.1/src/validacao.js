@@ -11,4 +11,9 @@ const validation = new Validation();
 validation.JSONValidation(data);
 
 let wrfl = new WriteFile();
-wrfl.writeFileWithErros("teste")
+
+const erros = {
+    campo: "nome do campo",
+    mensagem: "menssagem de erro",
+}
+wrfl.writeFileWithErros(JSON.stringify(erros, null, 2))
