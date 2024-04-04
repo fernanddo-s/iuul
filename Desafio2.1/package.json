@@ -9,5 +9,8 @@
     "write": "node ./src/WriteFile.js"
   },
   "author": "Luís Fernando",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.30.1"
+  }
 }
