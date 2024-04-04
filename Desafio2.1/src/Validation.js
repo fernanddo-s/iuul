@@ -11,19 +11,15 @@ class Validation {
       // validarCPF(users[i].cpf);
 
       //validarDataNascimento();
-      // validarRendaMensal();
+
+
+      console.log(users[i].renda_mensal)
+      console.log(validarRendaMensal(users[i].renda_mensal))
+      //validarRendaMensal(users[i].renda_mensal);
 
       console.log(users[i].estado_civil);
       console.log(validarEstadoCivil(users[i].estado_civil));
       // validarEstadoCivil(users[i].estado_civil);
-
-      // let date = new Date("2025-04-21")
-      // console.log(date.getFullYear())
-      // console.log(formatoValido(users[i].dt_nascimento));
-      // let data = validarData(users[i].dt_nascimento);
-      // console.log(data)
-      // console.log(formatoValido(data));
-      // idadeValida(calculaIdade(data));
     }
   }
 }
@@ -62,7 +58,7 @@ function validarCPF(cpf) {
 }
 
 // validar data de nascimento
-function validarDataNascimento(data) {
+function validarDataNascimento(dt_nascimento) {
   //recebe uma string do tipo "dt_nascimento": "14091966"
   //validar formato
   //validar idade (18 anos ou mais)
@@ -98,13 +94,20 @@ function validarData(dt_nascimento) {
   const data = moment(dt_nascimento, "YYYYMMDD");
 
   if (data.isValid()) {
-    return data.format("DD/MM/YYYY");
+    return data.format('YYYY-MM-DD');
   } else {
     return null;
   }
 }
+
 // validar renda mensal
-function validarRendaMensal(renda) {}
+function validarRendaMensal(renda) {
+  if (/^\d+(,\d{2})?$/.test(renda)) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 // validar estado civil
 function validarEstadoCivil(estadoCivil) {
@@ -116,6 +119,5 @@ function validarEstadoCivil(estadoCivil) {
     estadoCivil === "D"
   )
     return true;
-
   return false;
 }
