@@ -18,7 +18,7 @@ async function convertCurrency(
   toCurrency: string,
   amount: number
 ): Promise<void> {
-  const API_KEY = "661452a87b2072c27dac2db5"; // Replace 'YOUR_API_KEY' with your actual API key
+  const API_KEY = "661452a87b2072c27dac2db5";
   const apiUrl = `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${fromCurrency}/${toCurrency}`;
 
   try {
