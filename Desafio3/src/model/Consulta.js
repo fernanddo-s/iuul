@@ -1,12 +1,14 @@
 class Consulta {
-    constructor(cpf, data, hora_inicial, hora_final){
-        this.cpf = cpf;
-        this.data = data;
-        this.hora_inicial = hora_inicial;
-        this.hora_final = hora_final;
-    }
-
-    
+  #cpf;
+  #data;
+  #horaInicial;
+  #horaFinal;
+  constructor(cpf, data, horaInicial, horaFinal) {
+    this.#cpf = cpf;
+    this.#data = data;
+    this.#horaInicial = horaInicial;
+    this.#horaFinal = horaFinal;
+  }
 }
 
-module.exports = Consulta;
+export { Consulta };

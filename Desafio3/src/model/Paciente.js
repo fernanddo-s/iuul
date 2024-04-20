@@ -1,33 +1,36 @@
 class Paciente {
-  constructor(cpf, nome, data_nascimento) {
-    this.cpf = cpf;
-    this.nome = nome;
-    this.data_nascimento = data_nascimento;
+  #cpf;
+  #nome;
+  #dataNascimento;
+  constructor(cpf, nome, dataNascimento) {
+    this.#cpf = cpf;
+    this.#nome = nome;
+    this.#dataNascimento = dataNascimento;
   }
 
   get cpf() {
-    return this._cpf;
+    return this.#cpf;
   }
 
   set cpf(cpf) {
-    this._cpf = cpf;
+    this.#cpf = cpf;
   }
 
   get nome() {
-    return this._nome;
+    return this.#nome;
   }
 
   set nome(nome) {
-    this._nome = nome;
+    this.#nome = nome;
   }
 
-  get data_nascimento() {
-    return this._data_nascimento;
+  get dataNascimento() {
+    return this.#dataNascimento;
   }
 
-  set data_nascimento(data_nascimento) {
-    this._data_nascimento = data_nascimento;
+  set dataNascimento(dataNascimento) {
+    this.#dataNascimento = dataNascimento;
   }
 }
 
-module.exports = Paciente;
+export { Paciente };
