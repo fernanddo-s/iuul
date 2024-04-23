@@ -1,4 +1,5 @@
-class Paciente {
+const { DataTypes, Model } = require("sequelize");
+class Paciente extends Model {
   #cpf;
   #nome;
   #dataNascimento;
