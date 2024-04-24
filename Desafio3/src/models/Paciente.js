@@ -1,37 +1,16 @@
-const { DataTypes, Model } = require("sequelize");
-class Paciente extends Model {
-  #cpf;
-  #nome;
-  #dataNascimento;
-  constructor(cpf, nome, dataNascimento) {
-    this.#cpf = cpf;
-    this.#nome = nome;
-    this.#dataNascimento = dataNascimento;
-  }
+const Sequelize = require("sequelize");
+const db = require("../db/db.js");
 
-  get cpf() {
-    return this.#cpf;
-  }
+const Paciente = db.define("paciente", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+  cpf: Sequelize.STRING,
+  nome: Sequelize.STRING,
+  dataNascimento: Sequelize.DATE,
+});
 
-  set cpf(cpf) {
-    this.#cpf = cpf;
-  }
-
-  get nome() {
-    return this.#nome;
-  }
-
-  set nome(nome) {
-    this.#nome = nome;
-  }
-
-  get dataNascimento() {
-    return this.#dataNascimento;
-  }
-
-  set dataNascimento(dataNascimento) {
-    this.#dataNascimento = dataNascimento;
-  }
-}
-
-export { Paciente };
+module.exports = Paciente;
