@@ -1,4 +1,9 @@
 const readlineSync = require("readline-sync");
+const Paciente = require("../model/Paciente")
+const Consulta = require("../model/Consulta")
+
+let pacientes = [];
+let consultas = [];
 
 while (true) {
   console.log("Menu Principal\n1-Cadastro de pacientes\n2-Agenda\n3-Fim");
@@ -13,11 +18,6 @@ while (true) {
       switch (opMenuPaciente) {
         case "1":
           cpf = readlineSync.question("CPF: ");
-          //verificar se o cpf ja ta cadastrado
-          if (consultas.find((consulta) => consulta.cpf === cpf)) {
-            console.log("Erro: CPF já cadastrado!");
-            break;
-          }
           //validar cpf
           while (!validarCPF(cpf)) {
             console.log(
@@ -46,9 +46,9 @@ while (true) {
           break;
         case "2":
           // listagem de pacientes *FALTA ORDENAÇÃO
-          let cpf_exclusao = readlineSync.question("CPF: ");
+          cpf = readlineSync.question("CPF: ");
           for (let i = 0; i < pacientes.length; i++) {
-            if (cpf_exclusao === pacientes[i]._cpf) {
+            if (cpf === pacientes[i]._cpf) {
               pacientes.splice(i, 1);
               console.log("Paciente excluído com sucesso!");
               break;
