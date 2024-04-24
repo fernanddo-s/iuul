@@ -1,14 +1,26 @@
-class Consulta {
-  #cpf;
-  #data;
-  #horaInicial;
-  #horaFinal;
-  constructor(cpf, data, horaInicial, horaFinal) {
-    this.#cpf = cpf;
-    this.#data = data;
-    this.#horaInicial = horaInicial;
-    this.#horaFinal = horaFinal;
-  }
-}
+const Sequelize = require("sequelize");
+const db = require("../db/db.js");
+const Paciente = require("./Paciente.js");
 
-export { Consulta };
+const Consulta = db.define("consulta", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+  data: Sequelize.DATE,
+  horaInicial: Sequelize.STRING,
+  horaFinal: Sequelize.STRING,
+});
+
+Consulta.belongsTo(Paciente, {
+  constraint: true,
+  foreignKey: "idPaciente"
+})
+
+Paciente.hasMany(Consulta, {
+  foreignKey: "idPaciente"
+})
+
+module.exports = Consulta;
