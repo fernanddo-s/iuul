@@ -8,7 +8,11 @@ const Paciente = db.define("paciente", {
     allowNull: false,
     primaryKey: true
   },
-  cpf: Sequelize.STRING,
+  cpf: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: 'conpositeIndex'
+  },
   nome: Sequelize.STRING,
   dataNascimento: Sequelize.DATE,
 });
