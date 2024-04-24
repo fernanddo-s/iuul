@@ -5,7 +5,6 @@ const Paciente = require("../models/Paciente.js");
 const Consulta = require("../models/Consulta.js");
 const readlineSync = require("readline-sync");
 const Validacao = require("../validation/Validacao.js");
-const { where } = require("sequelize");
 
 (async () => {
   await db.sync();
@@ -20,7 +19,8 @@ const { where } = require("sequelize");
       dataConsulta,
       horaInicial,
       horaFinal,
-      paciente;
+      paciente,
+      consulta;
     switch (op) {
       case "1":
         console.log(
@@ -37,7 +37,18 @@ const { where } = require("sequelize");
               );
               cpf = readlineSync.question("CPF: ");
             }
+            paciente = await Paciente.findOne({ where: { cpf: cpf }});
+            while(paciente != null){
+              console.log("CPF já cadastrado!");
+              cpf = readlineSync.question("CPF: ");
+            }
             nome = readlineSync.question("Nome: ");
+            while (nome.length<5) {
+              console.log(
+                "Nome inválido, deve ter pelo menos 5 letras"
+              );
+              nome = readlineSync.question("Nome: ");
+            }
             dataNascimento = readlineSync.question("Data de Nascimento: ");
             while (
               !formatoValido(dataNascimento) ||
@@ -46,7 +57,7 @@ const { where } = require("sequelize");
               if (!formatoValido(dataNascimento)) {
                 console.log("A data deve estar no formato DD/MM/AAAA.");
               } else {
-                console.log("A data deve ser pelo menos 13 anos atrás.");
+                console.log("Paciente deve ter 13 ou mais.");
               }
               dataNascimento = readlineSync.question("Data de Nascimento: ");
             }
@@ -100,7 +111,6 @@ const { where } = require("sequelize");
         opMenuAgenda = readlineSync.question();
         switch (opMenuAgenda) {
           case "1":
-            cpf = readlineSync.question("CPF: ");
             dataConsulta = readlineSync.question("Data: ");
             while (!formatoValido(dataConsulta)) {
               console.log("A data deve estar no formato DD/MM/AAAA.");
@@ -118,19 +128,15 @@ const { where } = require("sequelize");
               console.log("Hora inválida");
               horaFinal = readlineSync.question("Hora final: ");
             }
-            const consulta = new Consulta(cpf, data, horaInicial, horaFinal);
-            consultas.push(consulta);
+            cpf = readlineSync.question("CPF: ");
+            paciente = await Paciente.findOne({ where: { cpf: cpf }});
+            consulta = await Consulta.create({data: data, horaInicial: horaInicial, horaFinal: horaFinal, idPaciente: paciente.id});
             break;
           case "2":
-            let cpf = readlineSync.question("CPF: ");
-            for (let i = 0; i < consultas.length; i++) {
-              if (cpf === consultas[i]._cpf) {
-                consultas.splice(i, 1);
-                console.log("Consulta excluída com sucesso!");
-                break;
-              }
-            }
-            console.log("Erro: não foi possível excluir a consulta");
+            cpf = readlineSync.question("CPF: ");
+            paciente = await Paciente.findOne({where: { cpf : cpf}})
+            consulta = await Consulta.findOne({where: { idPaciente: paciente.id}})
+            await consulta.destroy()
             break;
           case "3":
             consultas.forEach((item) => {
@@ -204,5 +210,16 @@ function calculaIdade(data) {
 }
 
 function validarHora(hora) {
-  return /^((0[8-9]|1[0-8])([0-5][05])|19(00))$/.test(hora);
+  return /^((0[8-9]|1[0-8])([0-5][00])|19(00))$/.test(hora);
 }
+
+
+/**
+ * CPF válido ok
+ * Não pode CPF rwpwtido ok
+ * Hora de 10 em 10 minutos ok
+ * Hora final tem que ser maior que a inicial
+ * data tem que ser para frente
+ * apagar um agendamento futuro
+ * 
+ */
