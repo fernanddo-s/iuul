@@ -11,6 +11,7 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "pg": "^8.11.5",
+    "readline-sync": "^1.4.10",
     "sequelize": "^6.37.3"
   }
 }
