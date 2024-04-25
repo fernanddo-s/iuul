@@ -5,9 +5,8 @@ class Validacao{
   }
 
   validarCPF(cpf) {
-    if (cpf.length !== 11 || /^(.)\1+$/.test(cpf)) return false; // Verifica se o CPF tem 11 dígitos e não é uma sequência repetida
-  
-    // Calcula o primeiro dígito verificador
+    if (cpf.length !== 11 || /^(.)\1+$/.test(cpf)) return false; 
+
     let sum = 0;
     for (let i = 0; i < 9; i++) {
       sum += parseInt(cpf.charAt(i)) * (10 - i);
@@ -15,9 +14,8 @@ class Validacao{
     let remainder = 11 - (sum % 11);
     let digit = remainder > 9 ? 0 : remainder;
   
-    if (parseInt(cpf.charAt(9)) !== digit) return false; // Verifica se o primeiro dígito verificador está correto
+    if (parseInt(cpf.charAt(9)) !== digit) return false;
   
-    // Calcula o segundo dígito verificador
     sum = 0;
     for (let i = 0; i < 10; i++) {
       sum += parseInt(cpf.charAt(i)) * (11 - i);
@@ -25,9 +23,9 @@ class Validacao{
     remainder = 11 - (sum % 11);
     digit = remainder > 9 ? 0 : remainder;
   
-    if (parseInt(cpf.charAt(10)) !== digit) return false; // Verifica se o segundo dígito verificador está correto
+    if (parseInt(cpf.charAt(10)) !== digit) return false;
   
-    return true; // CPF válido
+    return true;
   }
   
   formatoValido(data) {
